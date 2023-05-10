@@ -1,0 +1,125 @@
+@import url('https://fonts.cdnfonts.com/css/hk-groteks');
+.login-page-container {
+  background-size: cover;
+  min-height: 100vh;
+  background: linear-gradient(
+      116.64deg,
+      rgba(0, 0, 0, 0.8) 0.46%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url('https://res.cloudinary.com/ddkfpnw7u/image/upload/v1683723894/movie%20app/netfilx_1_rjr9ca.png');
+}
+
+@media screen and (max-width: 576px) {
+  .login-page-container {
+    background-color: black;
+    background-image: none;
+  }
+}
+
+.login-page-logo {
+  width: 180px;
+  height: 52px;
+  left: 165px;
+  top: 48px;
+}
+
+@media screen and (max-width: 576px) {
+  .login-page-logo {
+    width: 100px;
+    height: 27px;
+  }
+}
+
+.navbar {
+  padding: 32px;
+}
+
+.responsive-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-form-container {
+  position: absolute;
+  width: 456px;
+  height: 440px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 576px) {
+  .login-form-container {
+    width: 100%;
+  }
+}
+
+.login-text {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 40px;
+  color: #ffffff;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.label {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: #ffffff;
+  align-self: flex-start;
+  margin-top: 24px;
+}
+
+.input {
+  height: 40px;
+  left: 0%;
+  right: 0%;
+  top: 24px;
+  background-color: #333333;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  margin-top: 9px;
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: #e2e8f0;
+  padding: 8px 16px 8px 16px;
+}
+
+.login-button {
+  background: #e50914;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  padding: 8px 163px 8px 163px;
+  margin-top: 48px;
+}
+
+@media screen and (max-width: 576px) {
+  .login-button {
+    width: 100%;
+    padding: 8px 0px 8px 0px;
+  }
+}
