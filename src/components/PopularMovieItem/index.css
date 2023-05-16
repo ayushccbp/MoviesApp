@@ -1,0 +1,21 @@
+.popular-movie-item-image {
+  width: 255px;
+  height: 170px;
+  border-radius: 8px;
+}
+
+@media screen and (max-width: 576px) {
+  .popular-movie-item-image {
+    width: 90px;
+    height: 100px;
+  }
+}
+
+.popular-movie-item-container {
+  margin: 0px 32px 24px 0px;
+}
+
+.movie-item-link {
+  text-decoration: none;
+  color: inherit;
+}

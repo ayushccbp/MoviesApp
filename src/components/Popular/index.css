@@ -1,0 +1,41 @@
+.popular-page-bg-container {
+  min-height: 100vh;
+  background-color: #000000;
+  padding-bottom: 60px;
+}
+
+.popular-page-failure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.popular-page-failure {
+  height: 276px;
+  width: 375px;
+}
+
+.popular-movies-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+  width: 100%;
+}
+
+.popular-movies-items {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0px;
+  justify-content: center;
+}
+
+.popular-movies-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90vh;
+  width: 100%;
+}

@@ -1,0 +1,119 @@
+.home-bg-container {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 605px;
+  width: 100%;
+  background-position: center;
+  background-color: #131313;
+}
+
+.video-items-bg-container {
+  min-height: 80vh;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px;
+}
+
+.loader-container {
+  min-height: 50vh;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}
+
+.failure-container {
+  min-height: 50vh;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}
+
+.failure-description {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #ffffff;
+}
+
+.failure-button {
+  display: flex;
+  align-items: center;
+  padding: 4px 16px;
+  gap: 8px;
+  width: 94px;
+  height: 32px;
+  background: #ffffff;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.home-page-container {
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-color: #131313;
+}
+
+.landing-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: inherit;
+}
+
+.image-shadow {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(24, 24, 24, 0.546875) 38.26%,
+    #181818 92.82%,
+    #181818 98.68%,
+    #181818 108.61%
+  );
+  width: 100%;
+  min-height: 166.23px;
+  margin-top: auto;
+}
+
+.trending-now {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 31px;
+  letter-spacing: 0px;
+  text-align: left;
+  margin: 0px;
+  color: #ffffff;
+}
+
+.video-items-container {
+  width: 90%;
+}
+
+.slick-image-container {
+  margin: 5px;
+}
+
+.slick-image {
+  width: 254px;
+  height: 170px;
+  border-radius: 8px;
+}

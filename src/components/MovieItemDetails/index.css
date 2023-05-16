@@ -1,0 +1,149 @@
+.movie-item-details-container {
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+.movie-title {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 63px;
+  color: #ffffff;
+  margin: 0px;
+}
+
+.left-shadow {
+  background: linear-gradient(
+    90.33deg,
+    #181818 -6.5%,
+    rgba(24, 24, 24, 0.6) 57.15%,
+    rgba(24, 24, 24, 0) 99.77%
+  );
+  min-height: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-item-details-info-container {
+  padding: 80px 164px;
+}
+
+.movie-runtime-container {
+  display: flex;
+  align-items: center;
+  padding-top: 14px;
+}
+
+.overview {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #ffffff;
+  max-width: 632px;
+}
+
+.ua {
+  border: 1px solid #ffffff;
+  width: 55px;
+  height: 27px;
+  color: #ffffff;
+  font-family: 'Roboto';
+  padding: 2px 12px 2px 12px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 16.5px;
+}
+
+.movie-release-year {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 23px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #ffffff;
+  padding-left: 16.5px;
+}
+
+.movie-time {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 23px;
+  color: #ffffff;
+}
+
+.play-button {
+  padding: 8px 24px 8px 24px;
+  width: 74px;
+  height: 40px;
+  background: #ffffff;
+  border-radius: 4px;
+  margin-top: 32px;
+  font-family: 'Roboto';
+}
+
+.movie-genre-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px 165px;
+}
+
+.movie-item-details-list {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.movie-item-info-heading {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  color: #94a3b8;
+  padding-bottom: 8px;
+  margin: 0px;
+}
+
+.movie-item-info-list {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  margin: 5px 0px;
+}
+
+.similar-movie-container {
+  align-self: center;
+  padding: 0px 164px;
+}
+
+.similar-movie-heading {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 31px;
+  color: #ffffff;
+}
+
+.similar-movie-list-container {
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.similar-movie-image {
+  width: 255px;
+  height: 170px;
+  border-radius: 8px;
+  margin: 0px 30px 32px 0px;
+}

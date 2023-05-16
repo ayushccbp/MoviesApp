@@ -1,0 +1,99 @@
+.account-bg-container {
+  min-height: 100vh;
+  background-color: #000000;
+}
+
+.account-info-container {
+  background-color: #ffffff;
+  min-height: 80vh;
+  padding: 64px 165px;
+}
+
+.horizontal-line {
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+}
+
+.logout-button {
+  padding: 8px 20px;
+  gap: 10px;
+  font-family: 'Roboto';
+  color: #ffffff;
+  background: #e50914;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.account {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 47px;
+  color: #131313;
+}
+
+.membership-container {
+  display: flex;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.membership-details-container {
+  padding-left: 24px;
+}
+
+.membership {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  color: #94a3b8;
+  margin: 0px;
+}
+
+.email {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #1e293b;
+  margin: 0px;
+}
+
+.password {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #64748b;
+  margin: 0px;
+  margin-top: 13px;
+}
+
+.plan-details-container {
+  display: flex;
+  align-items: center;
+}
+
+.plan-details {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 31px;
+  color: #94a3b8;
+}
+
+.premium {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #1e293b;
+}
