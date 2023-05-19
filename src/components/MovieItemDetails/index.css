@@ -1,6 +1,8 @@
 .movie-item-details-container {
   min-height: 100vh;
   background-color: #000000;
+  display: flex;
+  flex-direction: column;
 }
 
 .movie-title {
@@ -11,6 +13,13 @@
   line-height: 63px;
   color: #ffffff;
   margin: 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .movie-title {
+    font-size: 36px;
+    line-height: 47px;
+  }
 }
 
 .left-shadow {
@@ -26,7 +35,16 @@
 }
 
 .movie-item-details-info-container {
-  padding: 80px 164px;
+  width: 80%;
+  align-self: center;
+}
+
+@media screen and (max-width: 576px) {
+  .movie-item-details-info-container {
+    padding: 32px;
+    overflow-x: auto;
+    width: 100%;
+  }
 }
 
 .movie-runtime-container {
@@ -45,6 +63,13 @@
   max-width: 632px;
 }
 
+@media screen and (max-width: 576px) {
+  .overview {
+    font-size: 16px;
+    line-height: 21px;
+  }
+}
+
 .ua {
   border: 1px solid #ffffff;
   width: 55px;
@@ -55,6 +80,14 @@
   font-size: 18px;
   font-weight: 600;
   margin-left: 16.5px;
+}
+
+@media screen and (max-width: 576px) {
+  .ua {
+    font-size: 16px;
+    height: 25px;
+    width: 51px;
+  }
 }
 
 .movie-release-year {
@@ -68,6 +101,12 @@
   padding-left: 16.5px;
 }
 
+@media screen and (max-width: 576px) {
+  .movie-release-year {
+    font-size: 16px;
+  }
+}
+
 .movie-time {
   font-family: 'HK Grotesk', 'Roboto';
   font-style: normal;
@@ -75,6 +114,12 @@
   font-size: 18px;
   line-height: 23px;
   color: #ffffff;
+}
+
+@media screen and (max-width: 576px) {
+  .movie-time {
+    font-size: 16px;
+  }
 }
 
 .play-button {
@@ -85,13 +130,31 @@
   border-radius: 4px;
   margin-top: 32px;
   font-family: 'Roboto';
+  border: none;
+}
+
+@media screen and (max-width: 576px) {
+  .play-button {
+    height: 32px;
+    width: 76px;
+    margin-top: 24px;
+  }
 }
 
 .movie-genre-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 24px 165px;
+  align-self: center;
+  width: 80%;
+  padding-top: 24px;
+}
+
+@media screen and (max-width: 576px) {
+  .movie-genre-container {
+    padding: 12px 32px;
+    width: 100%;
+  }
 }
 
 .movie-item-details-list {
@@ -111,6 +174,13 @@
   margin: 0px;
 }
 
+@media screen and (max-width: 576px) {
+  .movie-item-info-heading {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
 .movie-item-info-list {
   font-family: 'HK Grotesk', 'Roboto';
   font-style: normal;
@@ -121,9 +191,23 @@
   margin: 5px 0px;
 }
 
+@media screen and (max-width: 576px) {
+  .movie-item-info-list {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
 .similar-movie-container {
   align-self: center;
-  padding: 0px 164px;
+  width: 80%;
+}
+
+@media screen and (max-width: 576px) {
+  .similar-movie-container {
+    width: 100%;
+    padding: 20px 32px;
+  }
 }
 
 .similar-movie-heading {
@@ -133,6 +217,12 @@
   font-size: 24px;
   line-height: 31px;
   color: #ffffff;
+}
+
+@media screen and (max-width: 576px) {
+  .similar-movie-heading {
+    font-size: 20px;
+  }
 }
 
 .similar-movie-list-container {
@@ -146,4 +236,43 @@
   height: 170px;
   border-radius: 8px;
   margin: 0px 30px 32px 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .similar-movie-image {
+    width: 90px;
+    height: 64px;
+    margin: 0px 8px 12px 0px;
+  }
+}
+
+.movie-details-loader-container {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.movie-details-failure-container {
+  align-self: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.movie-item-details-landing-page {
+  width: 100%;
+  min-height: 501px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 576px) {
+  .movie-item-details-landing-page {
+    height: 427px;
+  }
 }

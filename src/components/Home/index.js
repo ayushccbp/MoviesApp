@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Slider from 'react-slick'
+import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {GoAlert} from 'react-icons/go'
@@ -19,10 +20,13 @@ class Home extends Component {
   state = {
     apiStatusOriginalsMovies: apiStatusConstant.initial,
     originalsMoviesData: [],
+    apiStatusTrendingNowMovies: apiStatusConstant.initial,
+    trendingNowMoviesData: [],
   }
 
   componentDidMount() {
     this.fetchOriginalsMovesData()
+    this.fetchTrendingNowMoviesData()
   }
 
   randomImage = () => {
@@ -45,7 +49,8 @@ class Home extends Component {
     return formattedData
   }
 
-  fetchTrendingNewMoviesData = async () => {
+  fetchTrendingNowMoviesData = async () => {
+    this.setState({apiStatusTrendingNowMovies: apiStatusConstant.inprogress})
     const jwtToken = Cookies.get('jwt_token')
     const urlTrendingNowMovies =
       'https://apis.ccbp.in/movies-app/trending-movies'
@@ -57,9 +62,17 @@ class Home extends Component {
     }
     const responseTrendingNowMovies = await fetch(urlTrendingNowMovies, options)
     const trendingMoviesData = await responseTrendingNowMovies.json()
-    const formattedTrendingMoviesData = this.formatMovieData(
-      trendingMoviesData.results,
-    )
+    if (responseTrendingNowMovies.ok === true) {
+      const formattedTrendingMoviesData = this.formatMovieData(
+        trendingMoviesData.results,
+      )
+      this.setState({
+        apiStatusTrendingNowMovies: apiStatusConstant.success,
+        trendingNowMoviesData: formattedTrendingMoviesData,
+      })
+    } else {
+      this.setState({apiStatusTrendingNowMovies: apiStatusConstant.failure})
+    }
   }
 
   fetchOriginalsMovesData = async () => {
@@ -87,11 +100,11 @@ class Home extends Component {
     }
   }
 
-  renderDetails = () => {
+  renderDetails = randomSelectedMovie => {
     const {apiStatusOriginalsMovies} = this.state
     switch (apiStatusOriginalsMovies) {
       case apiStatusConstant.success:
-        return this.renderLandingPageDetails()
+        return this.renderLandingPageDetails(randomSelectedMovie)
       case apiStatusConstant.inprogress:
         return this.renderLoader()
       case apiStatusConstant.failure:
@@ -101,7 +114,19 @@ class Home extends Component {
     }
   }
 
-  renderLandingPageDetails = () => <div>success</div>
+  renderLandingPageDetails = randomSelectedMovie => {
+    console.log(randomSelectedMovie)
+    const {overview, title} = randomSelectedMovie
+    return (
+      <div className="random-movie-info-container">
+        <h1 className="random-movie-title">{title}</h1>
+        <p className="random-movie-description">{overview}</p>
+        <button className="play-button" type="button">
+          Play
+        </button>
+      </div>
+    )
+  }
 
   renderLandingPageView = () => {
     const {apiStatusOriginalsMovies} = this.state
@@ -112,22 +137,17 @@ class Home extends Component {
         : ''
     return (
       <div
+        className="landing-page-bg-container"
         style={{
-          backgroundImage: `
+          backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(24, 24, 24, 0.546875) 38.26%, #181818 92.82%, #181818 98.68%, #181818 108.61%),
     url(${randomImage})`,
           backgroundPosition: 'center',
           backgroundSize: 'cover',
-          width: '100%',
-          minHeight: '605px',
-          backgroundColor: '#131313',
         }}
       >
         <Header />
         <div className="landing-page-container">
-          {this.renderDetails()}
-          {apiStatusOriginalsMovies === apiStatusConstant.success && (
-            <div className="image-shadow"> ""</div>
-          )}
+          {this.renderDetails(randomSelectedMovie)}
         </div>
       </div>
     )
@@ -153,32 +173,130 @@ class Home extends Component {
   }
 
   renderOriginalsMoviesSlick = () => {
+    const {apiStatusOriginalsMovies} = this.state
     const settings = {
       dots: true,
       infinite: true,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     }
     const {originalsMoviesData} = this.state
-    return (
-      <Slider {...settings}>
-        {originalsMoviesData.map(eachItem => (
-          <div className="slick-image-container" key={eachItem.id}>
-            <img
-              alt={eachItem.title}
-              className="slick-image"
-              src={eachItem.backdropPath}
-            />
-          </div>
-        ))}
-      </Slider>
-    )
+    switch (apiStatusOriginalsMovies) {
+      case apiStatusConstant.inprogress:
+        return this.renderLoader()
+      case apiStatusConstant.failure:
+        return this.renderFailureView()
+      case apiStatusConstant.success:
+        return (
+          <Slider {...settings}>
+            {originalsMoviesData.map(eachItem => (
+              <div className="slick-image-container" key={eachItem.id}>
+                <Link className="link" to={`movies-app/movies/${eachItem.id}`}>
+                  <img
+                    alt={eachItem.title}
+                    className="slick-image"
+                    src={eachItem.backdropPath}
+                  />
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        )
+      default:
+        return null
+    }
+  }
+
+  renderTrendingNowMoviesSlick = () => {
+    const {apiStatusTrendingNowMovies} = this.state
+    const settings = {
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+          },
+        },
+      ],
+    }
+    const {trendingNowMoviesData} = this.state
+    switch (apiStatusTrendingNowMovies) {
+      case apiStatusConstant.inprogress:
+        return this.renderLoader()
+      case apiStatusConstant.failure:
+        return this.renderFailureView()
+      case apiStatusConstant.success:
+        return (
+          <Slider {...settings}>
+            {trendingNowMoviesData.map(eachItem => (
+              <div className="slick-image-container" key={eachItem.id}>
+                <Link className="link" to={`movies-app/movies/${eachItem.id}`}>
+                  <img
+                    alt={eachItem.title}
+                    className="slick-image"
+                    src={eachItem.backdropPath}
+                  />
+                </Link>
+              </div>
+            ))}
+          </Slider>
+        )
+      default:
+        return null
+    }
   }
 
   renderFailureView = () => (
     <div className="failure-container">
-      <GoAlert color="#D81F26" size={44} />
+      <GoAlert color="#D81F26" className="failure-icon" />
       <p className="failure-description">
         Something went wrong. Please try again later
       </p>
@@ -190,7 +308,13 @@ class Home extends Component {
 
   renderLoader = () => (
     <div className="loader-container" data-testid="loader">
-      <Loader type="TailSpin" color="#D81F26" height={50} width={50} />
+      <Loader
+        type="TailSpin"
+        color="#D81F26"
+        height={50}
+        width={50}
+        radius={0}
+      />
     </div>
   )
 
@@ -200,10 +324,16 @@ class Home extends Component {
         {this.renderLandingPageView()}
         <div className="video-items-bg-container">
           <div className="video-items-container">
-            <h1 className="trending-now">Trending Now</h1>
-            {this.renderOriginalsMoviesSlick()}
-            <h1 className="trending-now">Originals</h1>
-            {this.renderOriginalsMoviesSlick()}
+            <div className="video-items-slick-container">
+              <h1 className="trending-now">Trending Now</h1>
+              <div className="slick-container">
+                {this.renderTrendingNowMoviesSlick()}
+              </div>
+              <h1 className="trending-now">Originals</h1>
+              <div className="slick-container">
+                {this.renderOriginalsMoviesSlick()}
+              </div>
+            </div>
           </div>
           <Footer />
         </div>

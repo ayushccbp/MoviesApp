@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import {Redirect} from 'react-router-dom'
 import {lightFormat} from 'date-fns'
 import './index.css'
 import Header from '../Header'
@@ -102,7 +101,6 @@ class MovieItemDetails extends Component {
       voteAverage,
       budget,
     } = movieData
-    console.log(movieData)
     const hour = parseInt(runtime / 60)
     const minutes = runtime % 60
     const date = new Date(releaseDate)
@@ -111,32 +109,26 @@ class MovieItemDetails extends Component {
       <>
         <div
           style={{
-            backgroundImage: `
+            background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(24, 24, 24, 0.546875) 38.26%, #181818 92.82%, #181818 98.68%, #181818 108.61%),
+            linear-gradient(90.33deg, #181818 -6.5%, rgba(24, 24, 24, 0.6) 57.15%, rgba(24, 24, 24, 0) 99.77%),
     url(${backdropPath})`,
             backgroundPosition: 'center',
             backgroundSize: 'cover',
-            width: '100%',
-            minHeight: '501px',
-            backgroundColor: '#131313',
-            display: 'flex',
-            flexDirection: 'column',
           }}
+          className="movie-item-details-landing-page"
         >
-          <div className="left-shadow">
-            <Header />
-            <div className="movie-item-details-info-container">
-              <h1 className="movie-title">{title}</h1>
-              <div className="movie-runtime-container">
-                <p className="movie-time">{`${hour}h ${minutes}m`}</p>
-                <div className="ua">U/A</div>
-                <p className="movie-release-year">{year}</p>
-              </div>
-              <p className="overview">{overview}</p>
-              <button className="play-button" type="button">
-                Play
-              </button>
+          <Header />
+          <div className="movie-item-details-info-container">
+            <h1 className="movie-title">{title}</h1>
+            <div className="movie-runtime-container">
+              <p className="movie-time">{`${hour}h ${minutes}m`}</p>
+              <div className="ua">U/A</div>
+              <p className="movie-release-year">{year}</p>
             </div>
-            <div className="image-shadow"> </div>
+            <p className="overview">{overview}</p>
+            <button className="play-button" type="button">
+              Play
+            </button>
           </div>
         </div>
         <div className="movie-genre-container">
@@ -179,7 +171,7 @@ class MovieItemDetails extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="movie-details-loader-container" data-testid="loader">
       <Header />
       <Loader
         type="TailSpin"
@@ -187,16 +179,19 @@ class MovieItemDetails extends Component {
         height={50}
         width={50}
         radius={0}
+        style={{marginTop: '200px'}}
       />
     </div>
   )
 
   renderFailureVIew = () => (
-    <div className="popular-page-failure-container">
+    <div className="movie-details-failure-container">
+      <Header />
       <img
         className="popular-page-failure"
         alt="failure"
         src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1684156199/movie%20app/Background-Complete_vldnun.png"
+        style={{marginTop: '100px'}}
       />
       <p className="failure-description">
         Something went wrong. Please try again later

@@ -1,0 +1,131 @@
+.search-input-bg-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+}
+
+.search-result-container {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.search-failure-description {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 31px;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 576px) {
+  .search-failure-description {
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 500;
+    width: 80%;
+  }
+}
+
+.search-movie-items-container {
+  width: 90%;
+  flex-wrap: wrap;
+  display: flex;
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+.search-input-container {
+  height: 40px;
+  width: 264px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+}
+
+@media screen and (max-width: 576px) {
+  .search-input-container {
+    width: 114px;
+    height: 22px;
+    border-radius: 4px 0px 0px 4px;
+    margin-right: 17px;
+  }
+}
+
+.search-input {
+  background-color: inherit;
+  flex-grow: 1;
+  height: inherit;
+  outline: none;
+  border: none;
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #f8fafc;
+  padding: 2px 10px 2px 10px;
+}
+
+@media screen and (max-width: 576px) {
+  .search-input {
+    width: inherit;
+    font-size: 12px;
+  }
+}
+
+.search-input-icon {
+  height: 20px;
+  width: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .search-input-icon {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.search-icon-input-container {
+  height: inherit;
+  width: 40px;
+  background-color: #2c2b2b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px 7px 3px 7px;
+  border-radius: 0px 4px 4px 0px;
+  border: 1px solid #ffffff;
+  border-left: none;
+  border-right: none;
+}
+
+@media screen and (max-width: 576px) {
+  .search-icon-input-container {
+    height: inherit;
+    width: 30px;
+  }
+}
+
+.search-page-failure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+.search-loader-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

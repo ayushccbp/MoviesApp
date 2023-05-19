@@ -11,17 +11,16 @@
 }
 
 .video-items-bg-container {
-  min-height: 80vh;
-  background-color: #000000;
+  min-height: 605px;
+  background-color: #131313;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 48px;
 }
 
 .loader-container {
-  min-height: 50vh;
-  width: 90%;
+  height: inherit;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +28,8 @@
 }
 
 .failure-container {
-  min-height: 50vh;
-  width: 90%;
+  height: inherit;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +46,13 @@
   color: #ffffff;
 }
 
+@media screen and (max-width: 576px) {
+  .failure-description {
+    font-size: 10px;
+    line-height: 13px;
+  }
+}
+
 .failure-button {
   display: flex;
   align-items: center;
@@ -58,6 +64,16 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .failure-button {
+    width: 69px;
+    height: 24px;
+    padding: 4px 12px;
+    font-size: 10px;
+    line-height: 16px;
+  }
 }
 
 .home-page-container {
@@ -75,8 +91,11 @@
 .landing-page-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  min-height: inherit;
+  margin-top: auto;
+  padding: 40px;
+  height: 466px;
 }
 
 .image-shadow {
@@ -95,16 +114,38 @@
 
 .trending-now {
   font-family: 'HK Grotesk', 'Roboto';
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 500;
   line-height: 31px;
   letter-spacing: 0px;
   text-align: left;
   margin: 0px;
   color: #ffffff;
+  margin-top: 32px;
+  margin-bottom: 24px;
+}
+
+@media screen and (max-width: 576px) {
+  .trending-now {
+    font-size: 16px;
+    line-height: 20px;
+  }
 }
 
 .video-items-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media screen and (max-width: 576px) {
+  .video-items-container {
+    padding: 0px 10px 0px 10px;
+  }
+}
+
+.video-items-slick-container {
   width: 90%;
 }
 
@@ -116,4 +157,80 @@
   width: 254px;
   height: 170px;
   border-radius: 8px;
+}
+
+@media screen and (max-width: 576px) {
+  .slick-image {
+    width: 90px;
+    height: 64px;
+  }
+}
+
+.slick-container {
+  height: 170px;
+}
+
+@media screen and (max-width: 576px) {
+  .slick-container {
+    height: 90px;
+  }
+}
+
+.failure-icon {
+  width: 40px;
+  height: 40px;
+}
+
+@media screen and (max-width: 576px) {
+  .failure-icon {
+    width: 14px;
+    height: 12px;
+  }
+}
+
+.landing-page-bg-container {
+  background-color: #131313;
+  width: 100%;
+  min-height: 605px;
+  max-height: 605px;
+}
+
+.random-movie-info-container {
+  width: 90%;
+}
+
+.random-movie-title {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 62px;
+  color: #ffffff;
+  margin: 0px;
+  margin: 24px 0px 24px 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .random-movie-title {
+    font-size: 36px;
+    line-height: 47px;
+  }
+}
+
+.random-movie-description {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  color: #ffffff;
+  width: 80%;
+}
+
+@media screen and (max-width: 576px) {
+  .random-movie-description {
+    font-size: 16px;
+    line-height: 21px;
+    width: 90%;
+  }
 }

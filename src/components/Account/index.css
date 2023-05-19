@@ -7,6 +7,15 @@
   background-color: #ffffff;
   min-height: 80vh;
   padding: 64px 165px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 576px) {
+  .account-info-container {
+    width: 100%;
+    padding: 32px;
+  }
 }
 
 .horizontal-line {
@@ -23,6 +32,8 @@
   border-radius: 4px;
   border: none;
   cursor: pointer;
+  margin-top: 72px;
+  align-self: center;
 }
 
 .account {
@@ -54,6 +65,12 @@
   margin: 0px;
 }
 
+@media screen and (max-width: 576px) {
+  .membership {
+    font-size: 18px;
+  }
+}
+
 .email {
   font-family: 'HK Grotesk', 'Roboto';
   font-style: normal;
@@ -62,6 +79,12 @@
   line-height: 31px;
   color: #1e293b;
   margin: 0px;
+}
+
+@media screen and (max-width: 576px) {
+  .email {
+    font-size: 16px;
+  }
 }
 
 .password {
@@ -73,6 +96,12 @@
   color: #64748b;
   margin: 0px;
   margin-top: 13px;
+}
+
+@media screen and (max-width: 576px) {
+  .password {
+    font-size: 16px;
+  }
 }
 
 .plan-details-container {
@@ -89,6 +118,12 @@
   color: #94a3b8;
 }
 
+@media screen and (max-width: 576px) {
+  .plan-details {
+    font-size: 18px;
+  }
+}
+
 .premium {
   font-family: 'HK Grotesk', 'Roboto';
   font-style: normal;
@@ -96,4 +131,31 @@
   font-size: 24px;
   line-height: 31px;
   color: #1e293b;
+  margin: 0px;
+  margin-left: 41px;
+}
+
+@media screen and (max-width: 576px) {
+  .premium {
+    font-size: 16px;
+  }
+}
+
+.video-quality {
+  font-family: 'HK Grotesk', 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  border: 1px solid #1e293b;
+  font-size: 18px;
+  line-height: 23px;
+  color: #1e293b;
+  padding: 2px 5px 2px 5px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 576px) {
+  .video-quality {
+    font-size: 14px;
+    padding: 2px 5px 2px 5px;
+  }
 }

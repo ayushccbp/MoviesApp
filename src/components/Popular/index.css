@@ -16,6 +16,13 @@
   width: 375px;
 }
 
+@media screen and (max-width: 576px) {
+  .popular-page-failure {
+    width: 209px;
+    height: 176px;
+  }
+}
+
 .popular-movies-container {
   display: flex;
   justify-content: center;
