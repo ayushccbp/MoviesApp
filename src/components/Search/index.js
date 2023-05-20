@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
+import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Cookies from 'js-cookie'
 import Header from '../Header'
 import PopularMovieItem from '../PopularMovieItem'
@@ -17,6 +18,10 @@ class Search extends Component {
     apiStatus: apiStatusConstant.initial,
     searchText: '',
     movieData: [],
+    offset: 0,
+    currentPage: 1,
+    pageLimit: 16,
+    totalPage: 0,
   }
 
   componentDidMount() {
@@ -39,7 +44,7 @@ class Search extends Component {
 
   fetchSearchInputResult = async () => {
     this.setState({apiStatus: apiStatusConstant.inprogress})
-    const {searchText} = this.state
+    const {searchText, offset, pageLimit} = this.state
     if (searchText !== '') {
       const url = `https://apis.ccbp.in/movies-app/movies-search?search=${searchText}`
       const jwtToken = Cookies.get('jwt_token')
@@ -53,15 +58,51 @@ class Search extends Component {
       const data = await response.json()
       if (response.ok === true) {
         const formattedData = this.formatMovieData(data.results)
+        const totalData = formattedData.length
+        const totalPage = Math.ceil(totalData / 16)
+        console.log(totalData)
+        console.log(totalPage)
+        const sliceData = formattedData.slice(offset, pageLimit)
         this.setState({
           apiStatus: apiStatusConstant.success,
-          movieData: formattedData,
+          movieData: sliceData,
+          totalPage,
         })
       } else {
         this.setState({apiStatus: apiStatusConstant.failure})
       }
     } else {
       this.setState({apiStatus: apiStatusConstant.success, movieData: []})
+    }
+  }
+
+  handleNextPageClick = () => {
+    const {currentPage, totalPage} = this.state
+    if (currentPage < totalPage) {
+      this.setState(
+        prevState => ({
+          offset: prevState.offset + 16,
+          currentPage: prevState.currentPage + 1,
+          pageLimit: prevState.pageLimit + 16,
+        }),
+        this.fetchSearchInputResult,
+      )
+    }
+  }
+
+  handlePrevPageClick = () => {
+    const {currentPage, totalPage} = this.state
+    console.log(currentPage)
+    console.log(totalPage)
+    if (currentPage > 1) {
+      this.setState(
+        prevState => ({
+          offset: prevState.offset - 16,
+          currentPage: prevState.currentPage - 1,
+          pageLimit: prevState.pageLimit - 16,
+        }),
+        this.fetchSearchInputResult,
+      )
     }
   }
 
@@ -94,18 +135,38 @@ class Search extends Component {
   }
 
   renderSuccessView = () => {
-    const {movieData, searchText} = this.state
-    console.log(searchText)
+    const {movieData, searchText, currentPage, totalPage} = this.state
     if (movieData.length !== 0 && searchText !== '') {
       return (
-        <ul className="search-movie-items-container">
-          {movieData.map(eachMovieData => (
-            <PopularMovieItem
-              key={eachMovieData.id}
-              movieData={eachMovieData}
-            />
-          ))}
-        </ul>
+        <>
+          <ul className="search-movie-items-container">
+            {movieData.map(eachMovieData => (
+              <PopularMovieItem
+                key={eachMovieData.id}
+                movieData={eachMovieData}
+              />
+            ))}
+          </ul>
+          <div className="pagination-container">
+            <button
+              type="button"
+              className="pagination-button"
+              onClick={this.handlePrevPageClick}
+            >
+              <IoIosArrowBack />
+            </button>
+            <p className="pagination-details">
+              {currentPage} of {totalPage}
+            </p>
+            <button
+              type="button"
+              className="pagination-button"
+              onClick={this.handleNextPageClick}
+            >
+              <IoIosArrowForward />
+            </button>
+          </div>
+        </>
       )
     }
     if (searchText === '') {

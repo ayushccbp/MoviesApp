@@ -2,12 +2,46 @@ import {Component} from 'react'
 import Slider from 'react-slick'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
+import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Loader from 'react-loader-spinner'
 import {GoAlert} from 'react-icons/go'
 import Header from '../Header'
 import Footer from '../Footer'
 
 import './index.css'
+
+function PrevCustomArrow(props) {
+  const {className, style, onClick} = props
+  return (
+    <IoIosArrowBack
+      role="button"
+      onClick={onClick}
+      className={`${className} slick-arrow`}
+      tabIndex={0}
+      style={{
+        ...style,
+        color: '#ffffff',
+      }}
+    />
+  )
+}
+
+function NextCustomArrow(props) {
+  const {className, style, onClick} = props
+  console.log(onClick)
+  return (
+    <IoIosArrowForward
+      role="button"
+      onClick={onClick}
+      className={`${className} slick-arrow`}
+      tabIndex={0}
+      style={{
+        ...style,
+        color: '#ffffff',
+      }}
+    />
+  )
+}
 
 const apiStatusConstant = {
   initial: 'INITIAL',
@@ -115,7 +149,6 @@ class Home extends Component {
   }
 
   renderLandingPageDetails = randomSelectedMovie => {
-    console.log(randomSelectedMovie)
     const {overview, title} = randomSelectedMovie
     return (
       <div className="random-movie-info-container">
@@ -205,6 +238,8 @@ class Home extends Component {
           },
         },
       ],
+      prevArrow: <PrevCustomArrow />,
+      nextArrow: <NextCustomArrow />,
     }
     const {originalsMoviesData} = this.state
     switch (apiStatusOriginalsMovies) {
@@ -266,6 +301,8 @@ class Home extends Component {
           },
         },
       ],
+      prevArrow: <PrevCustomArrow />,
+      nextArrow: <NextCustomArrow />,
     }
     const {trendingNowMoviesData} = this.state
     switch (apiStatusTrendingNowMovies) {

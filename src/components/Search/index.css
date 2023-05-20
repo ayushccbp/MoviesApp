@@ -12,7 +12,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: 95%;
+  align-self: center;
+}
+
+@media screen and (max-width: 576px) {
+  .search-result-container {
+    width: 100%;
+  }
 }
 
 .search-failure-description {

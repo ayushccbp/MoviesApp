@@ -234,3 +234,15 @@
     width: 90%;
   }
 }
+
+.slick-arrow {
+  height: 30px;
+  width: 30px;
+}
+
+@media screen and (max-width: 576px) {
+  .slick-arrow {
+    height: 20px;
+    height: 20px;
+  }
+}

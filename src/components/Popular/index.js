@@ -1,5 +1,6 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
+import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import Footer from '../Footer'
@@ -15,7 +16,13 @@ const apiStatusConstant = {
 }
 
 class Popular extends Component {
-  state = {apiStatus: apiStatusConstant.initial}
+  state = {
+    apiStatus: apiStatusConstant.initial,
+    offset: 0,
+    currentPage: 1,
+    pageLimit: 16,
+    totalPage: 0,
+  }
 
   componentDidMount() {
     this.fetchPopularMoviesData()
@@ -34,6 +41,7 @@ class Popular extends Component {
 
   fetchPopularMoviesData = async () => {
     this.setState({apiStatus: apiStatusConstant.inprogress})
+    const {offset, pageLimit} = this.state
     const url = 'https://apis.ccbp.in/movies-app/popular-movies'
     const jwtToken = Cookies.get('jwt_token')
     const options = {
@@ -46,12 +54,46 @@ class Popular extends Component {
     const data = await response.json()
     if (response.ok === true) {
       const formattedData = this.formatMovieData(data.results)
+      const totalData = formattedData.length
+      const totalPage = Math.ceil(totalData / 16)
+      const sliceData = formattedData.slice(offset, pageLimit)
       this.setState({
         apiStatus: apiStatusConstant.success,
-        movieData: formattedData,
+        movieData: sliceData,
+        totalPage,
       })
     } else {
       this.setState({apiStatus: apiStatusConstant.failure})
+    }
+  }
+
+  handleNextPageClick = () => {
+    const {currentPage, totalPage} = this.state
+    if (currentPage < totalPage) {
+      this.setState(
+        prevState => ({
+          offset: prevState.offset + 16,
+          currentPage: prevState.currentPage + 1,
+          pageLimit: prevState.pageLimit + 16,
+        }),
+        this.fetchPopularMoviesData,
+      )
+    }
+  }
+
+  handlePrevPageClick = () => {
+    const {currentPage, totalPage} = this.state
+    console.log(currentPage)
+    console.log(totalPage)
+    if (currentPage > 1) {
+      this.setState(
+        prevState => ({
+          offset: prevState.offset - 16,
+          currentPage: prevState.currentPage - 1,
+          pageLimit: prevState.pageLimit - 16,
+        }),
+        this.fetchPopularMoviesData,
+      )
     }
   }
 
@@ -84,7 +126,7 @@ class Popular extends Component {
   )
 
   renderSuccessView = () => {
-    const {movieData} = this.state
+    const {movieData, currentPage, totalPage} = this.state
     return (
       <div className="popular-movies-card-container">
         <ul className="popular-movies-items">
@@ -92,6 +134,25 @@ class Popular extends Component {
             <PopularMovieItem key={eachData.id} movieData={eachData} />
           ))}
         </ul>
+        <div className="pagination-container">
+          <button
+            type="button"
+            className="pagination-button"
+            onClick={this.handlePrevPageClick}
+          >
+            <IoIosArrowBack />
+          </button>
+          <p className="pagination-details">
+            {currentPage} of {totalPage}
+          </p>
+          <button
+            type="button"
+            className="pagination-button"
+            onClick={this.handleNextPageClick}
+          >
+            <IoIosArrowForward />
+          </button>
+        </div>
         <Footer />
       </div>
     )
