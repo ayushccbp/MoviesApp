@@ -113,6 +113,7 @@
   border: 1px solid #ffffff;
   border-left: none;
   border-right: none;
+  color: #ffffff;
 }
 
 @media screen and (max-width: 576px) {

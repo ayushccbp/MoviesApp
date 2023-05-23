@@ -56,7 +56,7 @@ class Login extends Component {
         <nav className="navbar">
           <img
             className="login-page-logo"
-            alt="movie logo"
+            alt="login website logo"
             src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1683724103/movie%20app/Group_7399_dd4mgq.png"
           />
         </nav>

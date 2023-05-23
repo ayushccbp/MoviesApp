@@ -98,7 +98,7 @@ class Popular extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader
         type="TailSpin"
         color="#D81F26"
@@ -113,13 +113,17 @@ class Popular extends Component {
     <div className="popular-page-failure-container">
       <img
         className="popular-page-failure"
-        alt="failure"
+        alt="failure view"
         src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1684156199/movie%20app/Background-Complete_vldnun.png"
       />
       <p className="failure-description">
         Something went wrong. Please try again later
       </p>
-      <button className="failure-button" type="button">
+      <button
+        className="failure-button"
+        type="button"
+        onClick={this.fetchPopularMoviesData}
+      >
         Try Again
       </button>
     </div>

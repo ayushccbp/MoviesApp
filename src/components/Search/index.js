@@ -29,7 +29,12 @@ class Search extends Component {
   }
 
   onChangeSearchInput = event => {
-    this.setState({searchText: event.target.value}, this.fetchSearchInputResult)
+    if (event.key === 'Enter') {
+      this.setState(
+        {searchText: event.target.value},
+        this.fetchSearchInputResult,
+      )
+    }
   }
 
   formatMovieData = data => {
@@ -40,6 +45,10 @@ class Search extends Component {
       title: eachData.title,
     }))
     return formattedData
+  }
+
+  onClickSearchIcon = searchInput => {
+    this.setState({searchText: searchInput}, this.fetchSearchInputResult)
   }
 
   fetchSearchInputResult = async () => {
@@ -60,8 +69,6 @@ class Search extends Component {
         const formattedData = this.formatMovieData(data.results)
         const totalData = formattedData.length
         const totalPage = Math.ceil(totalData / 16)
-        console.log(totalData)
-        console.log(totalPage)
         const sliceData = formattedData.slice(offset, pageLimit)
         this.setState({
           apiStatus: apiStatusConstant.success,
@@ -91,9 +98,7 @@ class Search extends Component {
   }
 
   handlePrevPageClick = () => {
-    const {currentPage, totalPage} = this.state
-    console.log(currentPage)
-    console.log(totalPage)
+    const {currentPage} = this.state
     if (currentPage > 1) {
       this.setState(
         prevState => ({
@@ -107,7 +112,7 @@ class Search extends Component {
   }
 
   renderLoader = () => (
-    <div className="search-loader-container" data-testid="loader">
+    <div className="search-loader-container" testid="loader">
       <Loader
         type="TailSpin"
         color="#D81F26"
@@ -192,7 +197,12 @@ class Search extends Component {
   render() {
     return (
       <div className="search-input-bg-container">
-        <Header search onChangeSearchInput={this.onChangeSearchInput} />
+        <Header
+          search
+          onChangeSearchInput={this.onChangeSearchInput}
+          fetchSearchInputResult={this.fetchSearchInputResult}
+          onClickSearchIcon={this.onClickSearchIcon}
+        />
         <div className="search-result-container">{this.renderResult()}</div>
       </div>
     )

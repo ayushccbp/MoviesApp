@@ -20,7 +20,7 @@ class Account extends Component {
           <h1 className="account">Account</h1>
           <hr className="horizontal-line" />
           <div className="membership-container">
-            <h1 className="membership">Member ship</h1>
+            <p className="membership">Member ship</p>
             <div className="membership-details-container">
               <p className="email">rahul@gmail.com</p>
               <p className="password">Password: ********</p>
@@ -28,9 +28,11 @@ class Account extends Component {
           </div>
           <hr className="horizontal-line" />
           <div className="plan-details-container">
-            <h1 className="plan-details">Plan details</h1>
+            <p className="plan-details">Plan details</p>
             <p className="premium">Premium</p>
-            <div className="video-quality">Ultra HD</div>
+            <div className="video-quality">
+              <p>Ultra HD</p>
+            </div>
           </div>
           <hr className="horizontal-line" />
           <button

@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io'
 import Loader from 'react-loader-spinner'
-import {GoAlert} from 'react-icons/go'
 import Header from '../Header'
 import Footer from '../Footer'
 
@@ -52,9 +51,9 @@ const apiStatusConstant = {
 
 class Home extends Component {
   state = {
-    apiStatusOriginalsMovies: apiStatusConstant.initial,
+    apiStatusOriginalsMovies: apiStatusConstant.inprogress,
     originalsMoviesData: [],
-    apiStatusTrendingNowMovies: apiStatusConstant.initial,
+    apiStatusTrendingNowMovies: apiStatusConstant.inprogress,
     trendingNowMoviesData: [],
   }
 
@@ -252,11 +251,11 @@ class Home extends Component {
           <Slider {...settings}>
             {originalsMoviesData.map(eachItem => (
               <div className="slick-image-container" key={eachItem.id}>
-                <Link className="link" to={`movies-app/movies/${eachItem.id}`}>
+                <Link className="link" to={`/movies/${eachItem.id}`}>
                   <img
                     alt={eachItem.title}
                     className="slick-image"
-                    src={eachItem.backdropPath}
+                    src={eachItem.posterPath}
                   />
                 </Link>
               </div>
@@ -305,21 +304,22 @@ class Home extends Component {
       nextArrow: <NextCustomArrow />,
     }
     const {trendingNowMoviesData} = this.state
+    console.log(trendingNowMoviesData)
     switch (apiStatusTrendingNowMovies) {
       case apiStatusConstant.inprogress:
         return this.renderLoader()
       case apiStatusConstant.failure:
-        return this.renderFailureView()
+        return this.renderTrendingNowMoviesFailureView()
       case apiStatusConstant.success:
         return (
           <Slider {...settings}>
             {trendingNowMoviesData.map(eachItem => (
               <div className="slick-image-container" key={eachItem.id}>
-                <Link className="link" to={`movies-app/movies/${eachItem.id}`}>
+                <Link className="link" to={`/movies/${eachItem.id}`}>
                   <img
                     alt={eachItem.title}
                     className="slick-image"
-                    src={eachItem.backdropPath}
+                    src={eachItem.posterPath}
                   />
                 </Link>
               </div>
@@ -333,18 +333,46 @@ class Home extends Component {
 
   renderFailureView = () => (
     <div className="failure-container">
-      <GoAlert color="#D81F26" className="failure-icon" />
+      <img
+        className="failure-icon"
+        alt="failure view"
+        src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1684736072/movie%20app/alert-triangle_xztqca.png"
+      />
       <p className="failure-description">
         Something went wrong. Please try again later
       </p>
-      <button type="button" className="failure-button">
+      <button
+        type="button"
+        className="failure-button"
+        onClick={this.fetchOriginalsMovesData}
+      >
+        Try Again
+      </button>
+    </div>
+  )
+
+  renderTrendingNowMoviesFailureView = () => (
+    <div className="failure-container">
+      <img
+        className="failure-icon"
+        alt="failure view"
+        src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1684736072/movie%20app/alert-triangle_xztqca.png"
+      />
+      <p className="failure-description">
+        Something went wrong. Please try again later
+      </p>
+      <button
+        type="button"
+        className="failure-button"
+        onClick={this.fetchTrendingNowMoviesData}
+      >
         Try Again
       </button>
     </div>
   )
 
   renderLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader
         type="TailSpin"
         color="#D81F26"

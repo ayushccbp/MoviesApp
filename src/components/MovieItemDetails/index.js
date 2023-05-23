@@ -151,16 +151,16 @@ class MovieItemDetails extends Component {
             ))}
           </ul>
           <div>
-            <p className="movie-item-info-heading">Rating Count</p>
+            <h1 className="movie-item-info-heading">Rating Count</h1>
             <p className="movie-item-info-list">{voteCount}</p>
-            <p className="movie-item-info-heading">Rating Average</p>
+            <h1 className="movie-item-info-heading">Rating Average</h1>
             <p className="movie-item-info-list">{voteAverage}</p>
           </div>
 
           <div>
-            <p className="movie-item-info-heading">Budget</p>
+            <h1 className="movie-item-info-heading">Budget</h1>
             <p className="movie-item-info-list">{budget}</p>
-            <p className="movie-item-info-heading">Release Date</p>
+            <h1 className="movie-item-info-heading">Release Date</h1>
             <p className="movie-item-info-list">{releaseDate}</p>
           </div>
         </div>
@@ -171,7 +171,7 @@ class MovieItemDetails extends Component {
   }
 
   renderLoader = () => (
-    <div className="movie-details-loader-container" data-testid="loader">
+    <div className="movie-details-loader-container" testid="loader">
       <Header />
       <Loader
         type="TailSpin"
@@ -189,14 +189,18 @@ class MovieItemDetails extends Component {
       <Header />
       <img
         className="popular-page-failure"
-        alt="failure"
+        alt="failure view"
         src="https://res.cloudinary.com/ddkfpnw7u/image/upload/v1684156199/movie%20app/Background-Complete_vldnun.png"
         style={{marginTop: '100px'}}
       />
       <p className="failure-description">
         Something went wrong. Please try again later
       </p>
-      <button className="failure-button" type="button">
+      <button
+        className="failure-button"
+        type="button"
+        onClick={this.fetchMovieItemDetails}
+      >
         Try Again
       </button>
     </div>

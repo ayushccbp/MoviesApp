@@ -1,11 +1,15 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {BiSearchAlt2} from 'react-icons/bi'
+import {HiOutlineSearch} from 'react-icons/hi'
 import {AiOutlineMenuFold, AiFillCloseCircle} from 'react-icons/ai'
 import './index.css'
 
 class Header extends Component {
-  state = {menu: false, search: false}
+  state = {menu: false, search: false, searchInput: ''}
+
+  onChangeSearchInput = event => {
+    this.setState({searchInput: event.target.value})
+  }
 
   onClickMenu = () => {
     this.setState(prevState => ({menu: !prevState.menu}))
@@ -16,8 +20,13 @@ class Header extends Component {
   }
 
   render() {
-    const {menu} = this.state
-    const {search, onChangeSearchInput} = this.props
+    const {menu, searchInput} = this.state
+    const {
+      search,
+      onChangeSearchInput,
+      fetchSearchInputResult,
+      onClickSearchIcon,
+    } = this.props
     return (
       <>
         <nav className="header">
@@ -31,11 +40,11 @@ class Header extends Component {
                 />
               </Link>
               <ul className="header-menu-container">
-                <li>
-                  <Link className="link" to="/">
+                <Link className="link" to="/">
+                  <li>
                     <p className="menu">Home</p>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
                 <li>
                   <Link className="link" to="/popular">
                     <p className="menu">Popular</p>
@@ -43,22 +52,34 @@ class Header extends Component {
                 </li>
               </ul>
             </div>
-            <div className="search-icon-container">
+            <div className="search-icon-container" testid="search">
               {search !== true ? (
                 <Link className="link" to="/search">
-                  <BiSearchAlt2 size={24} />
+                  <button
+                    type="button"
+                    className="search-button"
+                    testid="search"
+                  >
+                    <HiOutlineSearch size={24} />
+                  </button>
                 </Link>
               ) : (
-                <div className="search-input-container">
+                <div className="search-input-container" testid="search">
                   <input
                     className="search-input"
-                    type="type"
+                    type="search"
                     placeholder="Search"
-                    onChange={onChangeSearchInput}
+                    onKeyDown={onChangeSearchInput}
+                    onChange={this.onChangeSearchInput}
                   />
-                  <div className="search-icon-input-container">
-                    <BiSearchAlt2 className="search-input-icon" />
-                  </div>
+                  <button
+                    type="button"
+                    className="search-icon-input-container"
+                    onClick={() => onClickSearchIcon(searchInput)}
+                    testid="searchButton"
+                  >
+                    <HiOutlineSearch className="search-input-icon" />
+                  </button>
                 </div>
               )}
               <Link className="link" to="/account">
@@ -80,11 +101,11 @@ class Header extends Component {
         </nav>
         {menu === true && (
           <ul className="mobile-menu-container">
-            <li>
-              <Link className="link" to="/">
+            <Link className="link" to="/">
+              <li>
                 <p className="mobile-menu">Home</p>
-              </Link>
-            </li>
+              </li>
+            </Link>
             <li>
               <Link className="link" to="/popular">
                 <p className="mobile-menu">Popular</p>
