@@ -21,12 +21,7 @@ class Header extends Component {
 
   render() {
     const {menu, searchInput} = this.state
-    const {
-      search,
-      onChangeSearchInput,
-      fetchSearchInputResult,
-      onClickSearchIcon,
-    } = this.props
+    const {search, onChangeSearchInput, onClickSearchIcon} = this.props
     return (
       <>
         <nav className="header">
